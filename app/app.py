@@ -5,7 +5,7 @@ from app.settings import Settings
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder=Settings.TEMPLATE_FOLDER)
 
     # Load configuration
     app.config.from_object(Settings)

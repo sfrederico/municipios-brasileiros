@@ -1,7 +1,10 @@
+from flask import render_template
+
+
 class HomeController:
     @staticmethod
     def index():
         """
         Render the home page.
         """
-        return "Welcome to the Home Page"
+        return render_template("home.html")
