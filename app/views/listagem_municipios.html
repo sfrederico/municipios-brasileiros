@@ -1,0 +1,92 @@
+<div class="container mt-4">
+    <!-- Cabeçalho da página -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <h3 class="display-4 fw-bold text-primary">{{ titulo | default("Listagem de Municípios") }}</h1>
+                {% if descricao %}
+                <p class="lead text-muted">{{ descricao }}</p>
+                {% endif %}
+        </div>
+    </div>
+
+    <!-- Verificação se existem municípios -->
+    {% if municipios %}
+    <!-- Contador de resultados -->
+    <div class="row mb-2">
+        <div class="col-12">
+            <p class="text-muted">
+                <i class="fas fa-info-circle"></i>
+                Exibindo {{ municipios|length }} município(s)
+            </p>
+        </div>
+    </div>
+
+    <!-- Grid de cards dos municípios -->
+    <div class="row">
+        {% for municipio in municipios %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 shadow-sm border-1">
+                <!-- Header do card com UF -->
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">{{ municipio.uf }}</span>
+                    <small>ID: {{ municipio.id }}</small>
+                </div>
+
+                <!-- Corpo do card -->
+                <div class="card-body d-flex flex-column">
+                    <!-- Nome do município -->
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <h5 class="card-title text-dark mb-0">{{ municipio.nome_municipio }}</h5>
+                        {% if municipio.is_capital() %}
+                        <span class="badge bg-warning text-dark">
+                            <i class="fas fa-crown"></i> Capital
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Informações básicas -->
+                    <div class="mb-3">
+                        <div class="row text-sm">
+                            <div class="col-6">
+                                <small class="text-muted">Código UF:</small>
+                                <div class="fw-semibold">{{ municipio.cod_uf }}</div>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Código Município:</small>
+                                <div class="fw-semibold">{{ municipio.cod_municipio }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- População -->
+                    <div class="mb-3">
+                        <small class="text-muted">População:</small>
+                        <div class="h6 text-success">
+                            <i class="fas fa-users"></i>
+                            {{ "{:,}".format(municipio.populacao).replace(",", ".") }} habitantes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Estado vazio -->
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-search fa-3x text-muted"></i>
+                </div>
+                <h4 class="text-muted">Nenhum município encontrado</h4>
+                <p class="text-muted">Não há municípios para exibir no momento.</p>
+                <a href="{{ url_for('home.index') }}" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Voltar ao Início
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
