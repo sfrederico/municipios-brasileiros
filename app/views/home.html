@@ -3,8 +3,18 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="text-center py-16">
-    <h1 class="text-4xl font-bold text-gray-800 mb-4">Bem-vindo à Home!</h1>
-    <p class="text-lg text-gray-600">Esta é a página inicial da sua aplicação Flask.</p>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-BuscaMun-tab" data-bs-toggle="tab" data-bs-target="#nav-BuscaMun" type="button" role="tab"  aria-selected="true">Busca por Município</button>
+    <button class="nav-link" id="nav-BuscPop-tab" data-bs-toggle="tab" data-bs-target="#nav-BuscPop" type="button" role="tab" aria-selected="false">Busca por População</button>
+    <button class="nav-link" id="nav-ListaCap-tab" data-bs-toggle="tab" data-bs-target="#nav-ListaCap" type="button" role="tab" aria-selected="false">Lista por Capitais</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-BuscaMun" role="tabpanel" aria-labelledby="nav-BuscaMun-tab" tabindex="0">{% include 'municipio.html'%}</div>
+  <div class="tab-pane fade" id="nav-BuscPop" role="tabpanel" aria-labelledby="nav-BuscPop-tab" tabindex="0">{% include 'populacao.html'%}</div>
+  <div class="tab-pane fade" id="nav-ListaCap" role="tabpanel" aria-labelledby="nav-ListaCap-tab" tabindex="0">{% include 'capitais.html'%}</div>
 </div>
 {% endblock %}
+
