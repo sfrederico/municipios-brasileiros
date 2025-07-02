@@ -41,7 +41,7 @@ class Municipio:
 
     def is_capital(self) -> bool:
         """Verifica se o município é uma capital"""
-        return self.capital_estado.lower() in ["sim", "s", "true", "1"]
+        return self.capital_estado.strip().lower() == "sim"
 
     def __str__(self) -> str:
         return f"{self.nome_municipio}/{self.uf}"
