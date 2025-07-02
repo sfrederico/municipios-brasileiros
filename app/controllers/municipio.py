@@ -7,10 +7,6 @@ class MunicipioController:
     @staticmethod
     def buscar_municipio_por_nome(nome_municipio: str):
         municipios = MunicipioRepository().buscar_por_nome(nome_municipio)
-        if not municipios:
-            raise ValueError(
-                f"Nenhum município encontrado com o nome '{nome_municipio}'"
-            )
         template = render_template(
             "listagem_municipios.html",
             municipios=municipios,

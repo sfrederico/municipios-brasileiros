@@ -1,8 +1,8 @@
 <div class="container mt-4">
     <!-- Cabeçalho da página -->
-    <div class="row mb-3">
+    <div class="row mb-2">
         <div class="col-12">
-            <h3 class="display-4 fw-bold text-primary">{{ titulo | default("Listagem de Municípios") }}</h1>
+            <h3 class="display-6 fw-bold text-primary">{{ titulo | default("Listagem de Municípios") }}</h1>
                 {% if descricao %}
                 <p class="lead text-muted">{{ descricao }}</p>
                 {% endif %}
@@ -59,7 +59,7 @@
                     </div>
 
                     <!-- População -->
-                    <div class="mb-3">
+                    <div>
                         <small class="text-muted">População:</small>
                         <div class="h6 text-success">
                             <i class="fas fa-users"></i>
@@ -82,7 +82,7 @@
                 </div>
                 <h4 class="text-muted">Nenhum município encontrado</h4>
                 <p class="text-muted">Não há municípios para exibir no momento.</p>
-                <a href="{{ url_for('home.index') }}" class="btn btn-primary">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
                     <i class="fas fa-home"></i> Voltar ao Início
                 </a>
             </div>
