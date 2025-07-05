@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Município</th>
+      <th scope="col">População</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <p>Estado consultado: {{ uf }}</p>
+    <p>Total de municípios encontrados: {{ estado|length }}</p>
+    <p>População total do estado {{ uf }}: {{ populacao_total }}</p>
+
+    {% for cidade in estado %}
+      <tr>
+        <td>{{ cidade.nome_municipio }}</td>
+        <td>{{ cidade.populacao }}</td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="2">Nenhum município encontrado.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

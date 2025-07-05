@@ -12,10 +12,16 @@ class PopulacaoController:
                                titulo="Cidades não capitais mais populosas", 
                                descricao="Listagem de cidades não capitais mais populosas")
     @staticmethod
-    def buscar_populacao_por_estado_controller(uf: str):
+    def buscar_populacao_por_estado_controller(uf):
+        uf = uf.strip().upper()
         estado = PopulacaoRepository().buscar_populacao_por_estado(uf)
-        template = render_template('apresentaPop.html', 
-                               estado=uf, 
+        populacao_total = sum(c.populacao for c in estado)
+
+        template = render_template('listagem_populacao_estados.html', 
+                               uf=uf, 
+                               estado=estado,
+                               populacao_total=populacao_total,
                                titulo="População por Estado", 
                                descricao="Mostra a População de um estado")
         return template
+    

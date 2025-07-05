@@ -2,7 +2,6 @@ from typing import List
 
 from app.dao.populacao_dao import PopulacaoDAO
 from app.db import get_db
-from app.models import Municipio
 from app.models.populacao import Populacao
 
 

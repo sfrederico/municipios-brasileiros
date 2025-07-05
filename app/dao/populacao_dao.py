@@ -1,5 +1,5 @@
 
-from typing import List
+from typing import List, Optional
 
 import psycopg2
 
@@ -45,6 +45,7 @@ class PopulacaoDAO:
         except psycopg2.Error as e:
             raise Exception(f"Erro ao buscar cidades não capitais: {e}")
         
+        
     def get_populacao_por_estado(self, uf: str) -> List[Populacao]:
         """Busca a população de um estado específico."""
         query = """
@@ -60,8 +61,6 @@ class PopulacaoDAO:
                 return [self._row_to_populacao(row) for row in rows]
         except psycopg2.Error as e:
             raise Exception(f"Erro ao buscar população por estado: {e}")
-
-
 
 
 
