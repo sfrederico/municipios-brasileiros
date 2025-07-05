@@ -1,6 +1,6 @@
 from flask import render_template
 
-from app.repository import MunicipioRepository
+from app.repository import MunicipioRepository, municipio_repository
 
 
 class MunicipioController:
@@ -14,3 +14,5 @@ class MunicipioController:
             descricao="Busca por nome de município",
         )
         return template
+
+    

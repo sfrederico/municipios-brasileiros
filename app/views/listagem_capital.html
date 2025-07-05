@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    <!-- Cabeçalho da página -->
+    <div class="row mb-2">
+        <div class="col-12">
+            <h3 class="display-6 fw-bold text-primary">{{ titulo | default("Listagem de Capitais") }}</h1>
+                {% if descricao %}
+                {% endif %}
+    </div>
+    <div class="list-group">
+    <table class="table table-striped" border="1">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">UF</th>
+                <th scope="col">População</th>
+            </tr>
+        </thead>
+        {% for capital in capitais %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ capital.id }}</td>
+            <td>{{ capital.nome_municipio }}</td>
+            <td>{{ capital.uf }}</td>
+            <td>{{ capital.populacao }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
