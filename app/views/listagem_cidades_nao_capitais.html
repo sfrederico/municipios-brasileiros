@@ -1,0 +1,17 @@
+<div>
+  <h3>Cidades não capitais mais populosas que a capital:</h3>
+  <table class="table table-striped">
+    <tr>
+      <th scope="col">Nome do Município</th>
+      <th scope="col">UF</th>
+      <th scope="col">População</th>
+    </tr>
+    {% for cidade in cidades %}
+      <tr>
+        <td>{{ cidade.nome_municipio }}</td>
+        <td>{{ cidade.uf }}</td>
+        <td>{{ cidade.populacao }}</td>
+      </tr>
+    {% endfor %}
+</table>
+</div>
