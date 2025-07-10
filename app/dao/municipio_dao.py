@@ -115,6 +115,30 @@ class MunicipioDAO:
         except psycopg2.Error as e:
             raise Exception(f"Erro ao buscar município por código: {e}")
 
+    def get_by_population_range(
+        self, min_population: int, max_population: int
+    ) -> List[Municipio]:
+        """Busca municípios por range de população"""
+        if min_population < 0 or max_population < 0:
+            raise ValueError("População não pode ser negativa")
+
+        if min_population >= max_population:
+            raise ValueError("População mínima deve ser menor que a máxima")
+
+        query = """
+            SELECT * FROM municipios
+            WHERE populacao >= %s AND populacao <= %s
+            ORDER BY populacao DESC, nome_municipio ASC
+        """
+
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(query, (min_population, max_population))
+                rows = cursor.fetchall()
+                return [self._row_to_municipio(row) for row in rows]
+        except psycopg2.Error as e:
+            raise Exception(f"Erro ao buscar municípios por range de população: {e}")
+
     def _row_to_municipio(self, row) -> Municipio:
         """Converte uma linha do banco em objeto Municipio"""
         return Municipio(

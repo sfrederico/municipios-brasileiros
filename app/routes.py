@@ -1,6 +1,6 @@
+from app.controllers.capital import CapitalController
 from app.controllers.home import HomeController
 from app.controllers.municipio import MunicipioController
-from app.controllers.capital import CapitalController
 from app.controllers.populacao import PopulacaoController
 
 
@@ -11,6 +11,11 @@ def register_routes(app):
         "/municipios-por-nome/<string:nome_municipio>",
         "buscar_municipio_por_nome",
         MunicipioController.buscar_municipio_por_nome,
+    )
+    app.add_url_rule(
+        "/municipios-por-range-populacao/<int:populacao_min>/<int:populacao_max>",
+        "buscar_municipio_por_range_populacao",
+        MunicipioController.buscar_municipio_por_range_populacao,
     )
     app.add_url_rule("/capitais", 
                      "listar_capitais", 
