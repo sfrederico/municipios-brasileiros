@@ -28,3 +28,9 @@ def register_routes(app):
     app.add_url_rule("/buscar-populacao-por-estado/<string:uf>", 
                      "buscar_populacao_por_estado", 
                      PopulacaoController.buscar_populacao_por_estado_controller)
+    
+    app.add_url_rule(
+        "/dez-municipios-mais-populosos",
+        "buscar_dez_mais_populosos_nao_capitais",
+        MunicipioController.buscar_dez_mais_populosos_nao_capitais,
+    )

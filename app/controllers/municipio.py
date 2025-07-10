@@ -27,3 +27,14 @@ class MunicipioController:
             descricao="Busca por faixa de população",
         )
         return template
+
+    @staticmethod
+    def buscar_dez_mais_populosos_nao_capitais():
+        municipios = MunicipioRepository().buscar_dez_mais_populosos_nao_capitais()
+        template = render_template(
+            "listagem_municipios.html",
+            municipios=municipios,
+            titulo="Os 10 municípios mais populosos que não são capitais",
+            descricao="Ranking dos municípios mais populosos (excluindo capitais)",
+        )
+        return template

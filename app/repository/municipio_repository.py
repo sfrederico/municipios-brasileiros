@@ -29,3 +29,7 @@ class MunicipioRepository:
             raise ValueError("População mínima não pode ser maior que a máxima")
 
         return self.municipio_dao.get_by_population_range(populacao_min, populacao_max)
+
+    def buscar_dez_mais_populosos_nao_capitais(self) -> List[Municipio]:
+        """Busca os dez municípios mais populosos que não são capitais"""
+        return self.municipio_dao.get_top_non_capital_municipalities(10)

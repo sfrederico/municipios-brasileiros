@@ -139,6 +139,25 @@ class MunicipioDAO:
         except psycopg2.Error as e:
             raise Exception(f"Erro ao buscar municípios por range de população: {e}")
 
+    def get_top_non_capital_municipalities(self, limit: int = 10) -> List[Municipio]:
+        """Busca os municípios mais populosos que não são capitais"""
+        query = """
+            SELECT * FROM municipios 
+            WHERE capital_estado = ' Não' 
+            ORDER BY populacao DESC 
+            LIMIT %s
+        """
+
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(query, (limit,))
+                rows = cursor.fetchall()
+                return [self._row_to_municipio(row) for row in rows]
+        except psycopg2.Error as e:
+            raise Exception(
+                f"Erro ao buscar municípios mais populosos não capitais: {e}"
+            )
+
     def _row_to_municipio(self, row) -> Municipio:
         """Converte uma linha do banco em objeto Municipio"""
         return Municipio(
